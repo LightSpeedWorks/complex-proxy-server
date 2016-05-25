@@ -1,0 +1,2 @@
+echo %COMPLEX_PROXY_PARAMS%
+pause
