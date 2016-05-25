@@ -5,6 +5,8 @@ void function () {
 	const log = LogManager().setWriter(LogWriter('proxy-%s.log')).getLogger();
 	const http = require('http'), url = require('url'), net  = require('net');
 	const fs = require('fs'), util = require('util');
+	const aa = require('aa');
+	aa.thunkifyAll(fs);
 	const getPathObjects = require('./get-path-objects');
 
 	function startProxy(HTTP_PORT, PROXY_PORT, PROXY_HOST) {
@@ -43,14 +45,14 @@ void function () {
 		function saveObject(file, obj) {
 			fs.writeFile(file + '.tmp', 'module.exports =\n' +
 				util.inspect(sortObject(obj), {depth:null}) + '\n',
-				err => {
+				err => aa(function *() {
 					if (err) return log.warn(err);
-					try { fs.unlinkSync(file + '.old3'); } catch (e) {}
-					try { fs.renameSync(file + '.old2', file + '.old3'); } catch (e) {}
-					try { fs.renameSync(file + '.old1', file + '.old2'); } catch (e) {}
-					try { fs.renameSync(file,           file + '.old1'); } catch (e) {}
-					try { fs.renameSync(file + '.tmp', file); } catch (e) {}
-				});
+					try { yield fs.unlinkAsync(file + '.old3'); } catch (e) {}
+					try { yield fs.renameAsync(file + '.old2', file + '.old3'); } catch (e) {}
+					try { yield fs.renameAsync(file + '.old1', file + '.old2'); } catch (e) {}
+					try { yield fs.renameAsync(file,           file + '.old1'); } catch (e) {}
+					try { yield fs.renameAsync(file + '.tmp', file); } catch (e) {}
+				}));
 		}
 
 		// printError
