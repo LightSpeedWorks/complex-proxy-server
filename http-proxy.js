@@ -41,8 +41,16 @@ void function () {
 
 		// saveObject
 		function saveObject(file, obj) {
-			fs.writeFile(file, 'module.exports =\n' +
-				util.inspect(sortObject(obj), {depth:null}) + '\n');
+			fs.writeFile(file + '.tmp', 'module.exports =\n' +
+				util.inspect(sortObject(obj), {depth:null}) + '\n',
+				err => {
+					if (err) return log.warn(err);
+					try { fs.unlinkSync(file + '.old3'); } catch (e) {}
+					try { fs.renameSync(file + '.old2', file + '.old3'); } catch (e) {}
+					try { fs.renameSync(file + '.old1', file + '.old2'); } catch (e) {}
+					try { fs.renameSync(file,           file + '.old1'); } catch (e) {}
+					try { fs.renameSync(file + '.tmp', file); } catch (e) {}
+				});
 		}
 
 		// printError
