@@ -1,0 +1,26 @@
+{
+  "name": "complex-proxy-server",
+  "version": "0.0.0",
+  "description": "complex proxy server",
+  "main": "app.js",
+  "dependencies": {
+    "log-manager": "0.0.10",
+    "log-writer": "0.0.9"
+  },
+  "keywords": [
+    "proxy"
+  ],
+  "homepage": "https://github.com/LightSpeedWorks/complex-proxy-server#readme",
+  "bugs": {
+    "url": "https://github.com/LightSpeedWorks/complex-proxy-server/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LightSpeedWorks/complex-proxy-server.git"
+  },
+  "author": "LightSpeedC",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
