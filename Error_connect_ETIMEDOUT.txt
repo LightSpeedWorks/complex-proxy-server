@@ -1,0 +1,13 @@
+{ Error: read ECONNRESET
+    at exports._errnoException (util.js:1007:11)
+    at TCP.onread (net.js:563:26) code: 'ECONNRESET', errno: 'ECONNRESET', syscall: 'read' }
+events.js:160
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: connect ETIMEDOUT 172.16.100.100:3389
+    at Object.exports._errnoException (util.js:1007:11)
+    at exports._exceptionWithHostPort (util.js:1030:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1080:14)
+
+C:\Git\LightSpeedWorks\complex-proxy-server>pause
